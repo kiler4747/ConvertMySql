@@ -1,0 +1,466 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="libraryModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="libraryModelStoreContainer">
+          <EntitySet Name="libavtor" EntityType="libraryModel.Store.libavtor" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libavtoraliase" EntityType="libraryModel.Store.libavtoraliase" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libavtorname" EntityType="libraryModel.Store.libavtorname" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libbook" EntityType="libraryModel.Store.libbook" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libfilename" EntityType="libraryModel.Store.libfilename" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libgenre" EntityType="libraryModel.Store.libgenre" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libgenrelist" EntityType="libraryModel.Store.libgenrelist" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libjoinedbooks" EntityType="libraryModel.Store.libjoinedbooks" store:Type="Tables" Schema="library" />
+          <EntitySet Name="librate" EntityType="libraryModel.Store.librate" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libseq" EntityType="libraryModel.Store.libseq" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libseqname" EntityType="libraryModel.Store.libseqname" store:Type="Tables" Schema="library" />
+          <EntitySet Name="libtranslator" EntityType="libraryModel.Store.libtranslator" store:Type="Tables" Schema="library" />
+        </EntityContainer>
+        <EntityType Name="libavtor">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="AvtorId" />
+          </Key>
+          <Property Name="BookId" Type="uint" Nullable="false" />
+          <Property Name="AvtorId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libavtoraliase">
+          <Key>
+            <PropertyRef Name="AliaseId" />
+          </Key>
+          <Property Name="AliaseId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BadId" Type="int" Nullable="false" />
+          <Property Name="GoodId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libavtorname">
+          <Key>
+            <PropertyRef Name="AvtorId" />
+          </Key>
+          <Property Name="AvtorId" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="varchar" Nullable="false" MaxLength="99" />
+          <Property Name="MiddleName" Type="varchar" Nullable="false" MaxLength="99" />
+          <Property Name="LastName" Type="varchar" Nullable="false" MaxLength="99" />
+          <Property Name="NickName" Type="varchar" Nullable="false" MaxLength="33" />
+          <Property Name="NoDonate" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="uid" Type="int" Nullable="false" />
+          <Property Name="WebPay" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Homepage" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Source" Type="bool" Nullable="false" />
+          <Property Name="State" Type="bool" Nullable="false" />
+          <Property Name="SourceId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libbook">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="FileSize" Type="uint" Nullable="false" />
+          <Property Name="Time" Type="timestamp" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="Title1" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="Lang" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="FileType" Type="char" Nullable="false" MaxLength="4" />
+          <Property Name="Year" Type="smallint" Nullable="false" />
+          <Property Name="Deleted" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Ver" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="FileAuthor" Type="varchar" Nullable="false" MaxLength="64" />
+          <Property Name="N" Type="uint" Nullable="false" />
+          <Property Name="keywords" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="md5" Type="binary" Nullable="false" MaxLength="32" />
+          <Property Name="Broken" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="Modified" Type="timestamp" Nullable="false" />
+          <Property Name="Source" Type="bool" Nullable="false" />
+          <Property Name="State" Type="bool" Nullable="false" />
+          <Property Name="SourceId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libfilename">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="FileName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="libgenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="uint" Nullable="false" />
+          <Property Name="GenreId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libgenrelist">
+          <Key>
+            <PropertyRef Name="GenreId" />
+            <PropertyRef Name="GenreCode" />
+          </Key>
+          <Property Name="GenreId" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="GenreCode" Type="varchar" Nullable="false" MaxLength="45" />
+          <Property Name="GenreDesc" Type="varchar" Nullable="false" MaxLength="99" />
+          <Property Name="GenreMeta" Type="varchar" Nullable="false" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="libjoinedbooks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Time" Type="timestamp" Nullable="false" />
+          <Property Name="BadId" Type="int" Nullable="false" />
+          <Property Name="GoodId" Type="int" Nullable="false" />
+          <Property Name="realId" Type="int" />
+        </EntityType>
+        <EntityType Name="librate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Rate" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="libseq">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="SeqId" />
+          </Key>
+          <Property Name="BookId" Type="int" Nullable="false" />
+          <Property Name="SeqId" Type="int" Nullable="false" />
+          <Property Name="SeqNumb" Type="int" Nullable="false" />
+          <Property Name="Level" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libseqname">
+          <Key>
+            <PropertyRef Name="SeqId" />
+          </Key>
+          <Property Name="SeqId" Type="uint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SeqName" Type="varchar" Nullable="false" MaxLength="254" />
+          <Property Name="Source" Type="bool" Nullable="false" />
+          <Property Name="State" Type="bool" Nullable="false" />
+          <Property Name="SourceId" Type="uint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="libtranslator">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="TranslatorId" />
+          </Key>
+          <Property Name="BookId" Type="uint" Nullable="false" />
+          <Property Name="TranslatorId" Type="uint" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="libraryModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="libraryEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="libavtors" EntityType="libraryModel.libavtor" />
+          <EntitySet Name="libavtoraliases" EntityType="libraryModel.libavtoraliase" />
+          <EntitySet Name="libavtornames" EntityType="libraryModel.libavtorname" />
+          <EntitySet Name="libbooks" EntityType="libraryModel.libbook" />
+          <EntitySet Name="libfilenames" EntityType="libraryModel.libfilename" />
+          <EntitySet Name="libgenres" EntityType="libraryModel.libgenre" />
+          <EntitySet Name="libgenrelists" EntityType="libraryModel.libgenrelist" />
+          <EntitySet Name="libjoinedbooks" EntityType="libraryModel.libjoinedbook" />
+          <EntitySet Name="librates" EntityType="libraryModel.librate" />
+          <EntitySet Name="libseqs" EntityType="libraryModel.libseq" />
+          <EntitySet Name="libseqnames" EntityType="libraryModel.libseqname" />
+          <EntitySet Name="libtranslators" EntityType="libraryModel.libtranslator" />
+        </EntityContainer>
+        <EntityType Name="libavtor">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="AvtorId" />
+          </Key>
+          <Property Name="BookId" Nullable="false" Type="Int64" />
+          <Property Name="AvtorId" Nullable="false" Type="Int64" />
+        </EntityType>
+        <EntityType Name="libavtoraliase">
+          <Key>
+            <PropertyRef Name="AliaseId" />
+          </Key>
+          <Property Name="AliaseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="BadId" Nullable="false" Type="Int32" />
+          <Property Name="GoodId" Nullable="false" Type="Int32" />
+        </EntityType>
+        <EntityType Name="libavtorname">
+          <Key>
+            <PropertyRef Name="AvtorId" />
+          </Key>
+          <Property Name="AvtorId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="FirstName" Nullable="false" MaxLength="99" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="MiddleName" Nullable="false" MaxLength="99" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="LastName" Nullable="false" MaxLength="99" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="NickName" Nullable="false" MaxLength="33" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="NoDonate" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="uid" Nullable="false" Type="Int32" />
+          <Property Name="WebPay" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Email" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Homepage" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Source" Nullable="false" Type="Boolean" />
+          <Property Name="State" Nullable="false" Type="Boolean" />
+          <Property Name="SourceId" Nullable="false" Type="Int64" />
+        </EntityType>
+        <EntityType Name="libbook">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="FileSize" Nullable="false" Type="Int64" />
+          <Property Name="Time" Nullable="false" Type="DateTime" />
+          <Property Name="Title" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Title1" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Lang" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="FileType" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Year" Nullable="false" Type="Int16" />
+          <Property Name="Deleted" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Ver" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="FileAuthor" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="N" Nullable="false" Type="Int64" />
+          <Property Name="keywords" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="md5" Nullable="false" MaxLength="Max" FixedLength="false" Type="Binary" />
+          <Property Name="Broken" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Modified" Nullable="false" Type="DateTime" />
+          <Property Name="Source" Nullable="false" Type="Boolean" />
+          <Property Name="State" Nullable="false" Type="Boolean" />
+          <Property Name="SourceId" Nullable="false" Type="Int64" />
+        </EntityType>
+        <EntityType Name="libfilename">
+          <Key>
+            <PropertyRef Name="BookId" />
+          </Key>
+          <Property Name="BookId" Nullable="false" Type="Int32" />
+          <Property Name="FileName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" Type="String" />
+        </EntityType>
+        <EntityType Name="libgenre">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="BookId" Nullable="false" Type="Int64" />
+          <Property Name="GenreId" Nullable="false" Type="Int64" />
+        </EntityType>
+        <EntityType Name="libgenrelist">
+          <Key>
+            <PropertyRef Name="GenreId" />
+            <PropertyRef Name="GenreCode" />
+          </Key>
+          <Property Name="GenreId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="GenreCode" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="GenreDesc" Nullable="false" MaxLength="99" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="GenreMeta" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" Type="String" />
+        </EntityType>
+        <EntityType Name="libjoinedbook">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="Time" Nullable="false" Type="DateTime" />
+          <Property Name="BadId" Nullable="false" Type="Int32" />
+          <Property Name="GoodId" Nullable="false" Type="Int32" />
+          <Property Name="realId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="librate">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="BookId" Nullable="false" Type="Int32" />
+          <Property Name="UserId" Nullable="false" Type="Int32" />
+          <Property Name="Rate" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" Type="String" />
+        </EntityType>
+        <EntityType Name="libseq">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="SeqId" />
+          </Key>
+          <Property Name="BookId" Nullable="false" Type="Int32" />
+          <Property Name="SeqId" Nullable="false" Type="Int32" />
+          <Property Name="SeqNumb" Nullable="false" Type="Int32" />
+          <Property Name="Level" Nullable="false" Type="SByte" />
+        </EntityType>
+        <EntityType Name="libseqname">
+          <Key>
+            <PropertyRef Name="SeqId" />
+          </Key>
+          <Property Name="SeqId" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
+          <Property Name="SeqName" Nullable="false" MaxLength="254" FixedLength="false" Unicode="false" Type="String" />
+          <Property Name="Source" Nullable="false" Type="Boolean" />
+          <Property Name="State" Nullable="false" Type="Boolean" />
+          <Property Name="SourceId" Nullable="false" Type="Int64" />
+        </EntityType>
+        <EntityType Name="libtranslator">
+          <Key>
+            <PropertyRef Name="BookId" />
+            <PropertyRef Name="TranslatorId" />
+          </Key>
+          <Property Name="BookId" Nullable="false" Type="Int64" />
+          <Property Name="TranslatorId" Nullable="false" Type="Int64" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="libraryModelStoreContainer" CdmEntityContainer="libraryEntities">
+          <EntitySetMapping Name="libavtors">
+            <EntityTypeMapping TypeName="libraryModel.libavtor">
+              <MappingFragment StoreEntitySet="libavtor">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="AvtorId" ColumnName="AvtorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libavtoraliases">
+            <EntityTypeMapping TypeName="libraryModel.libavtoraliase">
+              <MappingFragment StoreEntitySet="libavtoraliase">
+                <ScalarProperty Name="AliaseId" ColumnName="AliaseId" />
+                <ScalarProperty Name="BadId" ColumnName="BadId" />
+                <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libavtornames">
+            <EntityTypeMapping TypeName="libraryModel.libavtorname">
+              <MappingFragment StoreEntitySet="libavtorname">
+                <ScalarProperty Name="AvtorId" ColumnName="AvtorId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="NoDonate" ColumnName="NoDonate" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="WebPay" ColumnName="WebPay" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Homepage" ColumnName="Homepage" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libbooks">
+            <EntityTypeMapping TypeName="libraryModel.libbook">
+              <MappingFragment StoreEntitySet="libbook">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Title1" ColumnName="Title1" />
+                <ScalarProperty Name="Lang" ColumnName="Lang" />
+                <ScalarProperty Name="FileType" ColumnName="FileType" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="Ver" ColumnName="Ver" />
+                <ScalarProperty Name="FileAuthor" ColumnName="FileAuthor" />
+                <ScalarProperty Name="N" ColumnName="N" />
+                <ScalarProperty Name="keywords" ColumnName="keywords" />
+                <ScalarProperty Name="md5" ColumnName="md5" />
+                <ScalarProperty Name="Broken" ColumnName="Broken" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libfilenames">
+            <EntityTypeMapping TypeName="libraryModel.libfilename">
+              <MappingFragment StoreEntitySet="libfilename">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libgenres">
+            <EntityTypeMapping TypeName="libraryModel.libgenre">
+              <MappingFragment StoreEntitySet="libgenre">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libgenrelists">
+            <EntityTypeMapping TypeName="libraryModel.libgenrelist">
+              <MappingFragment StoreEntitySet="libgenrelist">
+                <ScalarProperty Name="GenreId" ColumnName="GenreId" />
+                <ScalarProperty Name="GenreCode" ColumnName="GenreCode" />
+                <ScalarProperty Name="GenreDesc" ColumnName="GenreDesc" />
+                <ScalarProperty Name="GenreMeta" ColumnName="GenreMeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libjoinedbooks">
+            <EntityTypeMapping TypeName="libraryModel.libjoinedbook">
+              <MappingFragment StoreEntitySet="libjoinedbooks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="BadId" ColumnName="BadId" />
+                <ScalarProperty Name="GoodId" ColumnName="GoodId" />
+                <ScalarProperty Name="realId" ColumnName="realId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="librates">
+            <EntityTypeMapping TypeName="libraryModel.librate">
+              <MappingFragment StoreEntitySet="librate">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libseqs">
+            <EntityTypeMapping TypeName="libraryModel.libseq">
+              <MappingFragment StoreEntitySet="libseq">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="SeqId" ColumnName="SeqId" />
+                <ScalarProperty Name="SeqNumb" ColumnName="SeqNumb" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libseqnames">
+            <EntityTypeMapping TypeName="libraryModel.libseqname">
+              <MappingFragment StoreEntitySet="libseqname">
+                <ScalarProperty Name="SeqId" ColumnName="SeqId" />
+                <ScalarProperty Name="SeqName" ColumnName="SeqName" />
+                <ScalarProperty Name="Source" ColumnName="Source" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libtranslators">
+            <EntityTypeMapping TypeName="libraryModel.libtranslator">
+              <MappingFragment StoreEntitySet="libtranslator">
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
+                <ScalarProperty Name="TranslatorId" ColumnName="TranslatorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
